@@ -1,16 +1,23 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+import { React, Component } from 'react';
+import { ContactForm } from './ContactForm/ContactForm';
+import { GlobalStyle } from './GlobalStyle';
+import { Layout } from './Layout/Layout';
+
+export class App extends Component {
+  state = {
+    contacts: [],
+  };
+  addContact = newContact => {
+    this.setState(prevState => ({
+      contacts: [...prevState.contact, newContact]
+    }));
+  }
+  render() {
+    return (
+      <Layout>
+        <ContactForm onSubmit={this.addContact} />
+        <GlobalStyle />
+      </Layout>
+    );
+  }
+}
