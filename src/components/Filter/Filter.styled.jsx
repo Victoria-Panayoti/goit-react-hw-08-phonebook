@@ -7,7 +7,7 @@ export const Label = styled.label`
   gap: 12px;
 `;
 export const Input = styled.input`
-  width: 300px;
+  width: 320px;
   border-radius: 4px;
   &:hover,
   &:focus {
