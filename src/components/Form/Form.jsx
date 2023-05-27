@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 import { Formik, Field } from 'formik';
 import { Form, FormField, ErrorMessage, FormButton } from './Form.styled';
 import * as Yup from 'yup';
-import { nanoid } from 'nanoid';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from 'redux/selectors';
+import { addContacts } from 'redux/contactsSlice';
 
 const initialValues = {
   name: '',
@@ -25,11 +27,23 @@ const PhonebookSchema = Yup.object().shape({
     )
     .required('Required field!'),
 });
-export const PhonebookForm = ({ onSave }) => {
-  const handleSubmit = (values, { resetForm }) => {
-    resetForm();
-    onSave({ ...values, id: nanoid() });
+export const PhonebookForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+
+  const handleSubmit = (values, actions) => {
+    if (contacts.find(({ name }) => name.toLowerCase() === values.name.toLowerCase())) {
+      alert(` ${values.name} is already in contacts.`);
+      return;
+    }
+    if (contacts.find(({ number }) => number === values.number)) {
+      alert(` ${values.number} is already in contacts.`);
+      return;
+    }
+    dispatch(addContacts(values));
+    actions.resetForm();
   };
+ 
   return (
     <Formik
       initialValues={initialValues}
