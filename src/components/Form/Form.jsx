@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Formik, Field } from 'formik';
 import { Form, FormField, ErrorMessage, FormButton } from './Form.styled';
 import * as Yup from 'yup';
@@ -66,6 +65,3 @@ export const PhonebookForm = () => {
     </Formik>
   );
 };
-PhonebookForm.propTypes = {
-  onSave:PropTypes.func.isRequired,
-}
