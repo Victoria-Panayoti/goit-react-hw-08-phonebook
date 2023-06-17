@@ -2,7 +2,7 @@ import { Formik, Field } from 'formik';
 import { Form, FormField, ErrorMessage, FormButton } from './Form.styled';
 import * as Yup from 'yup';
 import { useDispatch} from 'react-redux';
-import { addContact } from 'redux/operations';
+import { addContact } from 'redux/contacts/operations';
 import { useContacts } from 'redux/hooks';
 
 const initialValues = {
@@ -52,12 +52,12 @@ export const PhonebookForm = () => {
       onSubmit={handleSubmit}
     >
       <Form autoComplete='off'>
-        <FormField htmlFor="name">
+        <FormField>
           Name
           <Field name="name" required />
           <ErrorMessage name="name" component="span" />
         </FormField>
-        <FormField htmlFor="number">
+        <FormField>
           Number
           <Field type="tel" name="number" required />
           <ErrorMessage name="number" component="span" />

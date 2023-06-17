@@ -1,15 +1,18 @@
 import { useDispatch} from 'react-redux';
 import { ContactButton, ContactItem, ContactList } from './Contacts.styled';
-import { deleteContact } from 'redux/operations';
+import { deleteContact, fetchContacts } from 'redux/contacts/operations';
 import { useVisibleContacts } from 'redux/hooks';
-
+import { useEffect } from 'react';
 
 export const Contacts = () => {
   const dispatch = useDispatch();
   const visibleContacts = useVisibleContacts();
-
+  useEffect(() => {
+    dispatch(fetchContacts())
+  },[dispatch])
   return (
-    <ContactList>
+    <>
+      <ContactList>
       {visibleContacts && visibleContacts.map(({ id, name, number }) => (
         <ContactItem key={id}>
           {name}: {number}
@@ -22,6 +25,7 @@ export const Contacts = () => {
           </ContactButton>
         </ContactItem>
       ))}
-    </ContactList>
+      </ContactList>
+      </>
   );
 };
