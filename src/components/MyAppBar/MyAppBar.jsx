@@ -4,7 +4,7 @@ import { UserMenu } from 'components/UserMenu/UserMenu';
 import { useAuth } from 'redux/hooks';
 import { Header } from './AppBar.styled';
 
-export const AppBar = () => {
+export const MyAppBar = () => {
   const { isLoggedIn } = useAuth();
   return (
     <Header>

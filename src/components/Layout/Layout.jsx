@@ -1,4 +1,4 @@
-import { AppBar } from 'components/AppBar/AppBar';
+import { MyAppBar } from 'components/MyAppBar/MyAppBar';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { Outlet } from 'react-router-dom';
 import { Container } from './Layout.styled';
@@ -8,7 +8,7 @@ export const Layout = () => {
   // const error = useError();
   return (
     <Container>
-      <AppBar />
+      <MyAppBar />
       <Outlet />
       <GlobalStyle />
     </Container>
